@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Test2</title>
+		<script src="../../../static/_js/_js/jquery-1.7.2.min.js"></script>
+		<script src="../../../static/_js/_js/jquery.timer.js"></script>
+		<script type="text/javascript">
+			function doAjax() {
+				$.ajax({ url: 'http://0.0.0.0:8080/test/test4/',
+				success: function(data){
+					$('#thediv').html(data);
+				}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Test2</h1>
+		<input type="button" value="click me" onClick=javascript:doAjax()><br>
+		<div id="thediv">
+			some test
+		</div>
+	</body>
+</html>

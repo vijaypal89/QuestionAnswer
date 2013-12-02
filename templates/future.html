@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}The future time {% endblock %}
+{% block link %}<link rel="stylesheet" href="../../../static/css/index.css" type="text/css">{% endblock %}
+{% block image %}
+		<p><img src="../../../static/image/logo_96.png" alt="logo" title="logo" height="100"></p>{% endblock %}
+{% block content %}
+<p>In {{hour_offset}} hour(s), it will be {{next_time}}.</p>
+{% endblock %}
+{% block return %}
+	<p><a href="/time/">return to current time</a></p>
+{% endblock %}
+

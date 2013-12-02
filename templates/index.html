@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Search</title>
+	<style>
+		body{
+
+		}
+		.content{
+			padding-left: 30%;
+			padding-bottom: 2em;
+			padding-top: 2em;
+		}
+		.logo{padding-left: 5%;}
+		.adding {
+			padding-left: 5em;
+		}		
+		.adding li{
+			display: inline;
+			list-style: none;
+			padding-top: 2px;
+			padding-bottom: 2px;
+			background-color: rgb(205, 205, 205);
+		}
+		.adding a{
+			text-decoration: none;
+			line-height: 3em;
+			text-align: center;
+			padding-right: 2em;
+			padding-left: 2em;
+
+		}
+		.adding a:hover{
+			background-color: rgb(105, 105, 105);
+		}
+		.item{
+			list-style: none;
+			padding-left: 30%;
+		}
+		.account{
+			text-align: right;
+		}
+
+/*chapter6*/
+#login {
+	width: 350px;
+	position: absolute;
+	left: 5px;
+	top: 6px;
+	z-index: 100;
+}
+#account {
+	width: 350px;
+	position: absolute;
+	right: 5px;
+	top: 6px;
+	z-index: 100;
+}
+
+#openlogin, #openaccount {
+	margin: 0;
+	cursor: pointer;
+	background: rgb(105, 105, 105)  url(../static/image/open.png) no-repeat 8px 7px;
+	color: black;
+	padding: 5px 0 2px 30px;
+}
+
+#login .close, #account .close {
+	background-image: url(../static/image/close.png);
+	background-color: rgb(110,138,195);	
+}
+
+#openlogin:hover , #openaccount:hover{
+	color: rgb(0,0,0);
+	background-color: rgb(110,138,195);	
+}
+
+#login form, #account form {
+	padding: 10px 10px 10px 10px;
+	display: none;	
+	background-color: rgb(255,255,255);
+	border: 1px solid gray;
+}
+#login label, #account label {
+	display: inline-block;
+	width: 100px;
+	text-align:right;
+	margin: 0 15px 0 0;
+	color: rgb(58,80,123);
+}
+#login input, #account input {
+	font-size: 14px;	
+}
+#login #login_button, #account #create_button {
+	margin-left: 70%;	
+}
+
+
+#loginForm label {
+	width: 120px;
+	color: black;
+	text-align: right;
+	margin-right: 20px;	
+	float: left;
+}
+#loginForm #q_button{
+	margin-left: 200px;
+}
+
+
+	</style>
+<link href="../static/_js/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet">
+<script src="../static/_js/_js/jquery-1.7.2.min.js"></script>
+<script src="../static/_js/_js/jquery.easing.1.3.js"></script>
+<script src="../static/_js/fancybox/jquery.fancybox-1.3.4.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	$('.search').focus();
+  $('#openlogin').toggle(
+      function() {
+	     $('#login form').slideDown(300);
+	     $(this).addClass('close');
+	  },
+	  function() {
+		 $('#login form').fadeOut(600);
+	     $(this).removeClass('close');
+      }
+  );
+  $('#openaccount').toggle(
+      function() {
+	     $('#account form').slideDown(300);
+	     $(this).addClass('close');
+	  },
+	  function() {
+		 $('#account form').fadeOut(600);
+	     $(this).removeClass('close');
+      }
+  ); // end toggle
+}); // end ready
+</script>
+<script>
+$(document).ready(function() {
+	$('#formWrapper').hide();
+	$('#loginLink').fancybox({
+	});
+}); // end ready
+</script>
+
+	</head>
+	<body>
+<div id="login">
+<p id="openlogin">Login</p>
+<form action="/login_view/">
+	<p>
+		<label for="logi_username">Username:</label>
+		<input type="text" name="username" id="login_username">
+	</p>
+	<p>
+		<label for="login_password">Password: </label>
+		<input type="password" name="login_password" id="password">
+	</p>
+	<p>
+		<input type="submit" name="login_button" id="login_button" value="Submit" >
+	</p>
+</form>
+</div>
+
+
+<div id="account">
+<p id="openaccount">Create Account</p>
+<form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+	<p>
+		<label for="firstname">First Name:</label>
+		<input type="text" name="firstname" id="firstname">
+	</p>
+	<p>
+		<label for="lastname">Last Name:</label>
+		<input type="text" name="lastname" id="lastname">
+	</p>
+	<p>
+		<label for="dob">Date of Birth:</label>
+		<input type="date" name="dob" id="dob">
+	</p>
+	<p>
+		<label for="email">E-mail:</label>
+		<input type="email" name="email" id="email">
+	</p>
+	<p>
+		<label for="create_username">Username:</label>
+		<input type="text" name="username" id="create_username">
+	</p>
+	<p>
+		<label for="create_password">Password: </label>
+		<input type="password" name="password" id="create_password">
+	</p>
+	<p>
+		<label for="address1">Address 1:</label>
+		<input type="text" name="address1" id="address1">
+	</p>
+	<p>
+		<label for="address2">Address 2:</label>
+		<input type="text" name="address2" id="address2">
+	</p>
+	<p>
+		<label for="country">Country:</label>
+		<input type="text" name="country" id="country">
+	</p>
+	<p>
+		<input type="submit" name="create_button" id="create_button" value="Submit" >
+	</p>
+</form>
+</div>
+
+
+		
+		<!--div class="account"><form action="/createaccount/">
+		<input type="submit" value="Create Account"></form></div-->
+		<div class="content">
+		<img src="../static/image/logo_120.png" title="Question Answer" alt="Question Answer" class="logo">
+		<form action="/search/" method="get">
+			<input type="text" name="q" style="width:500px; height:30px; font-size: 1.5em;" class="search">
+			<input type="submit" value="Search" style="height:30px;">
+		</form>
+</div>
+
+
+<div class="content">
+	<div class="main"><ul class="adding"><li>
+		<a id="loginLink" href="#loginForm">Add Question</a></li>
+	</ul>
+
+<div id="formWrapper">
+<form action="" method="get" id="loginForm">
+	<p>
+		<label for="username">Question: </label>
+		<input type="text" name="q_question" id="q_question">
+	</p>
+	<p>
+		<label for="username">Username: </label>
+		<input type="text" name="username" id="q_username">
+	</p>
+	<p>
+		<label for="password">Password:</label>
+		<input type="text" name="password" id="q_password">
+	</p>
+	<p>
+		<input type="submit" name="button" id="q_button" value="Submit">
+	</p>
+</form>
+</div>
+	</div>
+</div>
+
+
+
+		<div class="item">
+		{% for item in f_name %}
+			<li><a href="">{{item.first_name}}</a></li>
+		{% endfor %}
+		{% for item in l_name %}
+			<li><a href="">{{item.last_name}}</a></li>
+		{% endfor %}
+		</div>
+	</body>
+</html>

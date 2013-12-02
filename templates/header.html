@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Qans</title>
+
+<style>
+	div.header{
+		padding: 20px;
+		background-color: rgb(232, 232, 232);
+	}
+	div.logo{
+		padding-top: 0px;
+		padding-left: 10px;
+	}
+	div.searchform{
+		padding-top: 20px;
+		padding-left: 10%;
+	}
+	.item{
+		width: 50%;
+		list-style: none;
+		padding-left: 10%;
+		padding-top: 20px;
+	}
+	ul.addq{
+		padding-left: 20%;
+	}
+	ul.addq li{
+		display: inline;
+		padding-left: 5px;
+	}
+
+#profile a{
+	text-decoration: none;
+	padding: 6px 65px 9px 40px;
+	background-color: rgb(105, 105, 105);
+}
+#profile a:hover{
+	background-color: rgb(205, 205, 205);
+}
+h2.welcome{
+	padding-top: 5px;
+}
+.upper {
+	width: 100%;
+	height: 27px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 100;
+	background-color: green;
+}
+
+/*chapter6*/
+#login {
+	width: 350px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 100;
+}
+#profile {
+	width: 150px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 100;
+}
+
+#account {
+	width: 350px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 100;
+}
+
+#openlogin, #openaccount, #openprofile{
+	margin: 0;
+	cursor: pointer;
+	background: rgb(105, 105, 105)  url(../static/image/open.png) no-repeat 8px 7px;
+	color: black;
+	padding: 5px 0 2px 30px;
+}
+
+#login .close, #account .close, #profile .close{
+	background-image: url(../static/image/close.png);
+	background-color: rgb(110,138,195);	
+}
+
+#openlogin:hover , #openaccount:hover, #openprofile:hover{
+	color: rgb(0,0,0);
+	background-color: rgb(110,138,195);	
+}
+
+#login form, #account form {
+	padding: 10px 10px 10px 10px;
+	display: none;	
+	background-color: rgb(255,255,255);
+	border: 1px solid gray;
+}
+#profile form{
+	padding: 0px 0px 0px 0px;
+	display: none;	
+	background-color: rgb(255,255,255);
+}
+
+#login label, #account label{
+	display: inline-block;
+	width: 100px;
+	text-align:right;
+	margin: 0 15px 0 0;
+	color: rgb(58,80,123);
+}
+
+#login input, #account input {
+	font-size: 14px;	
+}
+#login #login_button, #account #create_button {
+	margin-left: 70%;	
+}
+
+
+
+</style>
+
+<link href="../../../static/_js/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet">
+<script src="../../../static/_js/_js/jquery-1.7.2.min.js"></script>
+<script src="../../../static/_js/_js/jquery.easing.1.3.js"></script>
+<script src="../../../static/_js/fancybox/jquery.fancybox-1.3.4.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	$('.search').focus();
+
+  $('#openprofile').toggle(
+      function() {
+	     $('#profile form').slideDown(300);
+	     $(this).addClass('close');
+	  },
+	  function() {
+		 $('#profile form').fadeOut(600);
+	     $(this).removeClass('close');
+      }
+  );
+  $('#openlogin').toggle(
+      function() {
+	     $('#login form').slideDown(300);
+	     $(this).addClass('close');
+	  },
+	  function() {
+		 $('#login form').fadeOut(600);
+	     $(this).removeClass('close');
+      }
+  );
+  $('#openaccount').toggle(
+      function() {
+	     $('#account form').slideDown(300);
+	     $(this).addClass('close');
+	  },
+	  function() {
+		 $('#account form').fadeOut(600);
+	     $(this).removeClass('close');
+      }
+  ); // end toggle
+}); // end ready
+</script>
+
+<script>
+$(document).ready(function() {
+	$('#formWrapper').hide();
+	$('.loginLink').fancybox({
+	});
+}); // end ready
+</script>
+	</head>
+	<body>
+<div class="header">
+{% if user.is_authenticated %}
+{% if user.is_active %}
+	<!--div class="upper"><a href="/qans/logout_view/">Logout</a>
+		<q> [ <a href="/qans/profile/" class="username">{{usr.first_name}}</a> {{usr.dob}} ]</q>
+	</div-->
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if user.is_active %}
+	<div class="upper">
+<div id="profile">
+<p id="openprofile">{{usr.first_name}}</p>
+<form action="/qans/login_view/" method="post">
+	<p>
+		<a href="/qans/profile/">Profile</a>
+	</p>
+	<p>
+		<a href="/qans/logout_view/">Logout</a>
+	</p>
+</form>
+</div>
+</div>
+{% endif %}
+{% endif %}
+
+
+{% if not user.is_authenticated %}
+
+<div class="upper">
+<div id="login">
+<p id="openlogin">Login</p>
+<form action="/qans/login_view/" method="post">
+	<p>
+		<label for="login_username">Username:</label>
+		<input type="text" name="username" id="login_username">
+	</p>
+	<p>
+		<label for="login_password">Password: </label>
+		<input type="password" name="password" id="login_password">
+	</p>
+	<p>
+		<input type="submit" name="login_button" id="login_button" value="Submit" >
+    	<input type="hidden" name="next" value="{{ next|escape }}">
+	</p>
+</form>
+</div>
+
+
+<div id="account">
+<p id="openaccount">Create Account</p>
+<form action="/qans/createUser/" method="post">
+	<p>
+		<label for="firstname">First Name:</label>
+		<input type="text" name="firstname" id="firstname">
+	</p>
+	<p>
+		<label for="lastname">Last Name:</label>
+		<input type="text" name="lastname" id="lastname">
+	</p>
+	<p>
+		<label for="dob">Date of Birth:</label>
+		<input type="date" name="dob" id="dob">
+	</p>
+	<p>
+		<label for="email">E-mail:</label>
+		<input type="email" name="email" id="email">
+	</p>
+	<p>
+		<label for="create_username">Username:</label>
+		<input type="text" name="username" id="create_username">
+	</p>
+	<p>
+		<label for="create_password">Password: </label>
+		<input type="password" name="password" id="create_password">
+	</p>
+	<p>
+		<label for="address1">Address 1:</label>
+		<input type="text" name="address1" id="address1">
+	</p>
+	<p>
+		<label for="address2">Address 2:</label>
+		<input type="text" name="address2" id="address2">
+	</p>
+	<p>
+		<label for="country">Country:</label>
+		<input type="text" name="country" id="country">
+	</p>
+	<p>
+		<input type="submit" name="create_button" id="create_button" value="Submit" >
+	</p>
+</form>
+</div>
+</div>
+{% endif %}
+
+<div class="logo">
+		<img src="../../../static/image/logo_120.png" title="Question Answer" alt="Question Answer" class="logo" width="300" height="150">
+
+</div></div>
+	<div class="searchform">
+		<form action="/qans/search/" method="get">
+			<input type="search" name="q" style="width:500px; height:38px; font-size: 1.5em;" class="search">
+			<input type="submit" value="Search" style="height:30px;">
+		</form></div>
+{% if user.is_authenticated %}
+{% if user.is_active %}
+<div class="content">
+	<div class="main"><ul class="addq">
+		<li><a class="loginLink" href="#loginForm">Add Question</a></li>
+	</ul>
+
+<div id="formWrapper">
+<form action="/qans/addquestion/" method="post" id="loginForm">
+	<p>
+		<label for="title">Title: </label>
+		<input type="text" name="title" style="width:350px; height:20px;">
+	</p>
+	<p>
+		<label for="question">Question: </label>
+		<textArea rows="20" cols="100" name="question"></textArea>
+	</p>
+	<p>
+		<input type="submit" name="button" id="q_button" value="Submit">
+	</p>
+</form>
+</div>
+	</div>
+</div>
+{% endif %}
+{% endif %}<hr>
+		<div class="item">
+		{% for item in items %}
+			<h2> {{item.user.first_name}} posted on: {{item.dateofquestion}}</h2>
+			<li><a href="/qans/answer/{{item.id}}">{{item.title}}</a></li>
+				<p>{{item.question}}</p>
+			{% if user.is_authenticated %}
+			{% if user.is_active %}
+			<div id="answer"><p>Answer:</p>
+				<form action="/qans/addanswer/{{item.id}}" method="post">
+					<p><textArea rows="8" cols="50" name="qanswer"></textArea></p>
+					<p><input type="submit" value="submit"></p>
+				</form>			
+			</div>
+			{% endif %}
+			{% endif %}<hr>
+		{% endfor %}
+		</div>
+	</body>
+</html>

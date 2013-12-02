@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Base</title>
+		<style>
+		ul.header, div.futurecontest, div.pastcontest{
+			text-align: center;
+			padding-top: 2em;
+		}
+		div.futurecontest td, div.pastcontest td{
+			border: 1px solid gray;
+			border-top: 5px solid gray;
+			border-bottom: 5px solid gray;
+		}
+
+		div.futurecontest td, div.pastcontest td{
+			text-align: center;
+			padding: .5em;
+			padding-left: 1.3em;
+			padding-right: 1.3em;
+			font-size: 1.3em;
+		}
+		div.futurecontest table, div.pastcontest table{
+
+		}
+		div.futurecontest td:first-child {
+			border-left: 5px solid gray;
+		}
+		div.futurecontest tr:first-child td:first-child {
+			border-top-left-radius: 10px;
+		}
+		div.futurecontest td:last-child {
+			border-right: 5px solid gray;
+		} 
+		div.futurecontest tr:first-child td:last-child { 
+			border-top-right-radius: 10px;
+		}
+		div.futurecontest tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+		div.futurecontest tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+		ul.header li{
+			list-style-type: none;
+			display: inline;
+			padding-left: 2em;
+			padding-top: 1em;
+			padding-bottom: 1em;
+			padding-right: 2em;
+			text-align: center;
+			background-color: rgb(205, 205, 205);
+			border-radius: 5px;
+		
+		}
+
+		ul.header li:hover{
+			background-color: rgb(105, 105, 105);
+		}
+		ul.header li a{
+			text-decoration: none;
+			padding-left: 3em;
+			padding-right: 3em;
+			font-size: 1.3em;
+		}
+		</style>
+		<script src="../../../static/_js/_js/jquery-1.7.2.min.js"></script>
+		<script src="../../../static/_js/_js/jquery.timer.js"></script>
+		<script type="text/javascript">
+			function doAjax() {
+				$.ajax({ url: 'http://0.0.0.0:8000/contest/test4/',
+				success: function(data){
+					$('#thediv').html(data);
+				}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div class="header">
+			<ul class="header">
+				<li><a href="">Home</a></li>
+				<li><a href="javascrip">Contest</a></li>
+				<li><a href="">Problems</a></li>
+				<li><a href="">About us</a></li>
+				<li><a href="">Contact us</a></li>
+			</ul>
+		</div>
+		<input type="button" value="click me" onClick=javascript:doAjax()><br>
+		<div id="thediv">some</div>
+	</body>
+</html>

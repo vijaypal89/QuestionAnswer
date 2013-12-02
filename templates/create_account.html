@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create Account</title>
+		<style>
+			body{
+				margin: 3em;
+			}
+			.left{
+				width: 15%;
+				float: left;
+			}
+			.right{
+				width: 85%;
+				margin-left: 16%;
+				border-left: 2px solid gray;
+				padding-left: 2em;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div><img src="../static/image/logo_120.png" title="Question Answer" alt="Question Answer" class="logo"height="100" width="200">
+		</div><hr>
+		<div class="abc">
+		<div class="left"><h3>There is area for add, order etc.</h3></div>
+		<div class="right">
+		<h1>Create Account</h1><hr>
+		{% if form.errors %}
+			<p style="color: red;">Please correct the errors below</p>{% endif %}
+		
+		<form action="" method="post">
+			<table>{{ form.as_table }}</table>
+			<input type="submit" value="Submit">
+		</form>
+		</div>
+
+		</div>	
+	</body>
+</html>

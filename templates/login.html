@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+	</head>
+	<body>
+		{% if error %}
+			<p><b> <font color="red">Error: </font></b>{{ error }} </p>
+		{% endif %}
+		<form action="/qans/login_view/" method="post">
+		   <label for="username">Username:</label>
+    		<input type="text" name="username" value="" id="username">
+    		<label for="password">Password:</label>
+    		<input type="password" name="password" value="" id="password">
+
+    		<input type="submit" value="Login">
+    		<input type="hidden" name="next" value="{{ next|escape }}">
+		</form>
+	</body>
+</html>

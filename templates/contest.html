@@ -1,0 +1,18 @@
+		<div class="futurecontest">
+			<h3>Future Contest:</h3>
+			<table align="center" cellspacing="0">
+			{% for contest in f_contests %}
+				<tr><td>{{contest.contestname}}</td><td>start and end time <br>
+					{{contest.starttime}} to {{contest.endtime}}</td><td>
+					<img src="../../static/image/user.jpeg" title="user" width="30" height="30"><a href="">Register here</a></td></tr>
+			{% endfor %}
+			</table>
+		</div>
+		<div class="pastcontest">
+			<h3>Past Contest:</h3>
+			<table align="center" cellspacing="0">
+			{% for contest in p_contests %}
+				<tr><td>{{contest.contestname}}</td></tr>
+			{% endfor %}
+			</table>
+		</div>
